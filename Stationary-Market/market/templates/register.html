@@ -1,0 +1,30 @@
+{% extends "base.html" %} 
+{%block title%} 
+register page
+{%endblock%} 
+{%block body%}
+<body class="text-center">
+    <div class="container">
+        <form method="post" class="form-register" style="color: white">
+            {{ form.hidden_tag() }}
+            <img class="mb-4" height=100 width=100 src="https://w7.pngwing.com/pngs/1022/68/png-transparent-online-marketplace-online-shopping-service-shopping-cart-miscellaneous-service-logo.png" alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Please Create your Account
+            </h1>
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="user-name") }}
+            {{ form.email_address.label() }}
+            {{ form.email_address(class="form-control", placeholder="email") }}
+            {{ form.password_1.label() }}
+            {{ form.password_1(class="form-control", placeholder="password") }}
+            {{ form.password_2.label() }}
+            {{ form.password_2(class="form-control", placeholder="confirm password") }}
+            <div class="checkbox mb-3">
+                <h6>Already have an account?</h6>
+                <a class="btn btn-sm btn-secondary" href="{{ url_for('login_page') }}">Login</a>
+            </div>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+        </form>
+    </div>
+</body>
+{%endblock%}

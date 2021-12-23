@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}
+Library Catalogue
+{%endblock%}
+
+{%block body%}
+<body>
+    <div class="row" style="margin-top: 20px; margin-left: 20px;">
+        <div class="col-sm-8">
+            <h2>Available Books</h2>
+            <p>click on one of the books to buy</p>
+            <table class="table table-hover table-dark">
+                <thead>
+                    <tr>
+                        <!-- Your Columns HERE -->
+                        <th scope="col">ID</th>
+                        <th scope="col">NAME</th>
+                        <th scope="col">BARCODE</th>
+                        <th scope="col">PRICE</th>
+                        <th scope="col">OPTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Your rows inside the table HERE: -->
+                    {% for item in available_items %}
+                    {% include 'includes/items_model.html' %}
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.barcode}}</td>
+                        <td>${{item.price}}</td>
+                        <td>
+                            <button type="button" class="btn btn-outline btn-info" data-toggle="modal" data-target="#Model-moreinfo-{{ item.id }}">more info</button>
+                            <button type="button" class="btn btn-outline btn-success" data-toggle="modal" data-target="#Model-purchase-{{item.id}}">purchase</button>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-4">
+            <h2>Your Cart</h2>
+            <p>check here for bought items</p>
+            <div class="row">
+                {% for own in owned_items %}
+                {% include 'includes/owned_items_model.html' %}
+                <div class="col-md-6">
+                    <div style="margin-bottom: 5px" class="card text-center bg-dark">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ own.name }}</h5>
+                            <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                    data-toggle="modal" data-target="#Model-sell-{{ own.id }}">
+                                Sell this Item
+                            </button>
+                            <p class="card-text"><strong>Price: {{ own.price }}$</strong></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+{%endblock%}

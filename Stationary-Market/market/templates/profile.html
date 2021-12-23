@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+{% block title %}
+Profile Page 
+{% endblock %} 
+{% block body %}
+<body class="text-center">
+    <div class="container">
+        <form method="POST" style="color:rgb(255, 255, 255)">
+            {{ profile_change.hidden_tag() }}
+            <img class="mb-4" height=100 width=100 src="https://w7.pngwing.com/pngs/1022/68/png-transparent-online-marketplace-online-shopping-service-shopping-cart-miscellaneous-service-logo.png" alt="">
+            <h1 class="h3 mb-3 font-weight-normal">
+                Add Budget in Here
+            </h1>
+            <br>
+            {{ profile_change.add_budget.label() }}
+            {{ profile_change.add_budget(class="form-control", placeholder="Budget")}}
+
+            {{ profile_change.password_1.label()}}
+            {{ profile_change.password_1(class="form-control", placeholder="password")}}
+            <br>
+            {{ profile_change.submit(class="btn btn-lg btn-block btn-primary")}}
+        </form>
+    </div>
+</body>
+{% endblock %}
